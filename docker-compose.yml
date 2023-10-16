@@ -1,0 +1,32 @@
+version: "3"
+services:
+  jenkins:
+    container_name: jk_e
+    image: jk_e
+    build:
+      context: .
+      dockerfile: dockerfilejenkins
+    ports:
+      - "8082:8080"
+    networks:
+      - net
+  remote_host:
+    container_name: rh_e
+    image: rh_e
+    build:
+      context: .
+      dockerfile: dockerfileubuntu
+    networks:
+      - net
+  remote_web_java:
+    container_name: rw_e
+    image: rw_e
+    build:
+      context: .
+      dockerfile: dockerfileSpring
+    ports:
+      - "8181:8080"
+    networks:
+      - net
+networks:
+  net:
